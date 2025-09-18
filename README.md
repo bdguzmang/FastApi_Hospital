@@ -17,49 +17,30 @@ Forma parte de la **Práctica 02** del curso de Inteligencia Artificial / Desarr
 
 ## 📂 Estructura del Proyecto
 
-\`\`\`
+```
 app/
  ├── api/
- 
- │└── routes/
- 
- │├── health.py
- 
- │├── hospitals.py
- 
- │└── usuarios.py
- 
- ├── core/
- 
- │     └── config.py
- 
- ├── db/
- 
- │     ├── base.py
- 
- │     └── session.py
- 
- ├── models/
- 
- │     ├── hospital.py
- 
- │     └── usuario.py
- 
- └── schemas/
- 
- │     ├── hospital.py
- 
- │     └── usuario.py
-      
+ │    └── routes/
+ │        ├── health.py
+ │        ├── hospitals.py
+ │        └── usuarios.py 
+ ├── core/ 
+ │     └── config.py 
+ ├── db/ 
+ │     ├── base.py 
+ │     └── session.py 
+ ├── models/ 
+ │     ├── hospital.py 
+ │     └── usuario.py 
+ └── schemas/ 
+      ├── hospital.py
+      └── usuario.py    
 docker-compose.yml
-
 requirements.txt
-
 .env.example
-
 schema.sql
 
-\`\`\`
+```
 
 ---
 
@@ -74,42 +55,42 @@ schema.sql
 ## ⚙️ Instalación y Configuración
 
 ### 1️⃣ Clonar el repositorio
-\`\`\`bash
+```bash
 git clone https://github.com/bdguzmang/FastApi_Hospital.git
 cd FastApi_Hospital
-\`\`\`
+```
 
 ### 2️⃣ Crear entorno virtual e instalar dependencias
-\`\`\`bash
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### 3️⃣ Configurar variables de entorno
 Copia el archivo de ejemplo y ajusta tu contraseña de PostgreSQL:
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 
 Contenido de `.env.example`:
-\`\`\`dotenv
+```dotenv
 DATABASE_URL=postgresql+psycopg2://appuser:TuContraseña@localhost:5432/appdb
-\`\`\`
+```
 
 ### 4️⃣ Crear base de datos y tablas
 En PostgreSQL:
-\`\`\`sql
+```sql
 CREATE DATABASE appdb OWNER appuser;
-\`\`\`
+```
 
 Luego ejecuta el script `schema.sql`:
-\`\`\`bash
+```bash
 psql -U appuser -d appdb -h localhost -f schema.sql
-\`\`\`
+```
 
 Contenido de `schema.sql` (ya incluido en el repositorio):
-\`\`\`sql
+```sql
 CREATE TABLE IF NOT EXISTS hospital (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(120) NOT NULL,
@@ -126,15 +107,15 @@ CREATE TABLE IF NOT EXISTS usuario (
     hospital_id INTEGER NOT NULL REFERENCES hospital(id) ON DELETE RESTRICT,
     creado_en TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
-\`\`\`
+```
 
 ---
 
 ## ▶️ Ejecución del Servidor
 
-\`\`\`bash
+```bash
 uvicorn main:app --reload
-\`\`\`
+```
 
 La API estará disponible en:
 - **Swagger UI:** http://localhost:8000/docs  
@@ -145,27 +126,27 @@ La API estará disponible en:
 ## 📌 Ejemplos de Uso
 
 ### Crear un hospital
-\`\`\`bash
+```bash
 curl -X POST "http://localhost:8000/hospitals" \
 -H "Content-Type: application/json" \
 -d '{"nombre":"Hospital Central","ciudad":"Bogotá","direccion":"Calle 123 #45-67"}'
-\`\`\`
+```
 
 ### Crear un usuario
-\`\`\`bash
+```bash
 curl -X POST "http://localhost:8000/usuarios" \
 -H "Content-Type: application/json" \
 -d '{"nombre":"Juan Pérez","email":"juan@example.com","rol":"medico","hospital_id":1}'
-\`\`\`
+```
 
 ---
 
 ## 🧪 Pruebas
 
 Si agregas tests con `pytest`, ejecútalos así:
-\`\`\`bash
+```bash
 pytest
-\`\`\`
+```
 
 ---
 
