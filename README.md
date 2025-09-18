@@ -20,25 +20,45 @@ Forma parte de la **Práctica 02** del curso de Inteligencia Artificial / Desarr
 \`\`\`
 app/
  ├── api/
- │    └── routes/
- │         ├── health.py
- │         ├── hospitals.py
- │         └── usuarios.py
+ 
+ │└── routes/
+ 
+ │├── health.py
+ 
+ │├── hospitals.py
+ 
+ │└── usuarios.py
+ 
  ├── core/
- │    └── config.py
+ 
+ │     └── config.py
+ 
  ├── db/
- │    ├── base.py
- │    └── session.py
+ 
+ │     ├── base.py
+ 
+ │     └── session.py
+ 
  ├── models/
- │    ├── hospital.py
- │    └── usuario.py
+ 
+ │     ├── hospital.py
+ 
+ │     └── usuario.py
+ 
  └── schemas/
-      ├── hospital.py
-      └── usuario.py
+ 
+ │     ├── hospital.py
+ 
+ │     └── usuario.py
+      
 docker-compose.yml
+
 requirements.txt
+
 .env.example
+
 schema.sql
+
 \`\`\`
 
 ---
